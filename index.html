@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fluxo de Navegação</title>
+  <style>
+    .card {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .card button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="./img/controle-PS5.webp" alt="Imagem do Produto 1">
+    <h2>Controle joystick sem fio Sony PlayStation DualSense CFI-ZCT1 cosmic red</h2>
+    <p>Preço: R$ 99,99</p>
+    <button onclick="abrirProduto(1)">Ver Detalhes</button>
+  </div>
+
+  <div class="card">
+    <img src="imagem2.jpg" alt="Imagem do Produto 2">
+    <h2>Produto 2</h2>
+    <p>Preço: R$ 49,99</p>
+    <button onclick="abrirProduto(2)">Ver Detalhes</button>
+  </div>
+
+  <!-- Adicione os outros produtos aqui -->
+
+  <script>
+    function abrirProduto(id) {
+      var url = "detalhes.html?id=" + id;
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>

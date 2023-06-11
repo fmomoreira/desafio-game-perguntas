@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Detalhes do Produto</title>
+  </head>
+  <body>
+    <h1>Detalhes do Produto</h1>
+
+    <div id="produto-container">
+      <!-- Os detalhes do produto serão preenchidos dinamicamente aqui -->
+    </div>
+
+    <div id="produto-detalhes">
+      <!-- Os detalhes do produto serão preenchidos dinamicamente aqui -->
+    </div>
+
+    <script>
+      // Função para obter o valor do parâmetro da URL pelo nome
+      function obterParametrosDaURL() {
+        var url = window.location.href;
+        var parametros = url.split("?")[1];
+        var parametrosDivididos = parametros.split("&");
+        var parametrosObjeto = {};
+
+        for (var i = 0; i < parametrosDivididos.length; i++) {
+          var parametro = parametrosDivididos[i].split("=");
+          var chave = parametro[0];
+          var valor = parametro[1];
+          parametrosObjeto[chave] = valor;
+        }
+
+        return parametrosObjeto;
+      }
+      // Função para buscar os detalhes do produto com base no ID
+      function buscarProdutoPorId(id) {
+        // Aqui você pode realizar uma chamada Ajax, buscar os detalhes do produto em uma API, banco de dados, etc.
+        // Neste exemplo, usaremos um objeto com informações estáticas para cada ID de produto.
+        var produtos = {
+          1: {
+            nome: "Produto 1",
+            preco: "R$ 99,99",
+            descricao: "Controle PS5",
+            detalhesTitulo: "Descrição Controle preciso",
+            detalhes:
+              "Este controle combina funções revolucionárias, preservando precisão, conforto e exatidão em cada movimento. Graças à sua ergonomia especialmente projetada para a posição da sua mão, você pode passar horas jogando com total conforto.\n\
+\n\
+Maior conforto e realismo\n\
+Permite que você jogue sem a necessidade de cabos no meio. Ele é projetado não só para controlar melhor seus videogames, mas também para aumentar seu realismo e experiência.\n\
+\n\
+Ativa o Bluetooth\n\
+Possui uma conexão Bluetooth de alta tecnologia para uso em qualquer computador ou dispositivo; você não precisará mais de aplicativos de terceiros ou cabo USB. Além disso, possui uma grande capacidade anti-interferência, fácil manuseio e sinal de conexão estável.\n\
+\n\
+Dimensão adicional para seus jogos\n\
+Com a tela sensível ao toque, muito mais conveniente e fácil de usar.",
+          },
+          2: {
+            nome: "Produto 2",
+            preco: "R$ 49,99",
+            descricao: "Descrição do Produto 2",
+            detalhes: "Este produtod ....",
+          },
+          // Adicione as informações dos outros produtos aqui
+        };
+
+        return produtos[id] || null;
+      }
+
+      // Função para exibir os detalhes do produto na página
+      function exibirDetalhesDoProduto() {
+        var parametros = obterParametrosDaURL();
+        var id = parametros.id;
+        var produto = buscarProdutoPorId(id);
+
+        if (produto) {
+          var produtoContainer = document.getElementById("produto-container");
+          var produtoHTML =
+            "<h2>" +
+            produto.nome +
+            "</h2>" +
+            "<p>Preço: " +
+            produto.preco +
+            "</p>" +
+            "<p>" +
+            produto.descricao +
+            "</p>";
+          produtoContainer.innerHTML = produtoHTML;
+
+          var produtoDetalhes = document.getElementById("produto-detalhes");
+
+          var detalhesHTML =
+            "<h2>" +
+            produto.detalhesTitulo +
+            "</h2>" +
+            "<span>Detalhes do produto: " +
+            produto.detalhes +
+            "</span>";
+          produtoDetalhes.innerHTML = detalhesHTML;
+        } else {
+          var produtoContainer = document.getElementById("produto-container");
+          produtoContainer.innerHTML = "<p>Produto não encontrado</p>";
+        }
+      }
+
+      // Chamada para exibir os detalhes do produto quando a página é carregada
+      exibirDetalhesDoProduto();
+    </script>
+  </body>
+</html>
